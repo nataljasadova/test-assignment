@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/person/personal-code/12345678912"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "1",
+      "personalCode": "12345678912",
+      "lastName": "John",
+      "firstName": "Pro",
+      "birthDay": "2000-09-22TT19:42:31Z",
+      "deathDay": null,
+      "gender": "Man"
+    }
+  }
+}

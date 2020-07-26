@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/api/person/bank-account/person-id/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountNumber": "EE12345678912345678914",
+      "currency": "eur",
+      "bankName": "seb"
+    }
+  }
+}
