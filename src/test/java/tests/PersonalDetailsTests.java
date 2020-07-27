@@ -1,29 +1,27 @@
 package tests;
 
+import dataentities.PersonalDetails;
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
 import logging.Log4jTestWatcher;
-import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class PersonPersonalDetailsTests {
+public class PersonalDetailsTests {
     public static RequestSpecification requestSpec;
 
     public static String personId;
 
-    private static Logger log = Logger.getLogger(PersonPersonalDetailsTests.class);
-
     @Rule
-    public TestWatcher watchman = new Log4jTestWatcher();
+    public TestWatcher testWatcher = new Log4jTestWatcher();
 
     @BeforeClass
     public static void createRequestSpecification() {
@@ -34,20 +32,19 @@ public class PersonPersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalCode_checkResponseCode_expect200() {
+    public void requestPersonalDetails_checkResponseCode_expect200() {
         given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/12345678912").
                 then().
                 assertThat().
-                statusCode(202);
+                statusCode(200);
 
     }
 
     @Test
-    public void requestPersonalCode_checkResponseCode_expect404() {
-
+    public void requestPersonalDetails_checkResponseCode_expect404() {
         given().
                 spec(requestSpec).
                 when().
@@ -58,8 +55,19 @@ public class PersonPersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalCode_checkContentType_expectApplicationJson() {
+    public void requestPersonalDetails_checkResponseCode_expect500() {
+        given().
+                spec(requestSpec).
+                when().
+                get("/api/person/personal-code/1.2345678912").
+                then().
+                assertThat().
+                statusCode(500);
+    }
 
+
+    @Test
+    public void requestPersonalDetails_checkContentType_expectApplicationJson() {
         given().
                 spec(requestSpec).
                 when().
@@ -70,8 +78,7 @@ public class PersonPersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalCode_checkGender_expectMan() {
-
+    public void requestPersonalDetails_checkGender_expectMan() {
         given().
                 spec(requestSpec).
                 when().
@@ -82,8 +89,18 @@ public class PersonPersonalDetailsTests {
     }
 
     @Test
-    public void extractPersonIdFromResponse() {
+    public void requestPersonalDetails_checkBirthDay_expectDateTime() {
+        PersonalDetails personalDetails = given().
+                spec(requestSpec).
+                when().
+                get("/api/person/personal-code/12345678912").
+                as(PersonalDetails.class);
 
+        Assert.assertEquals(LocalDateTime.of(2000, Month.MARCH,9,17,55), personalDetails.getBirthDay());
+    }
+
+    @Test
+    public void extractPersonIdFromResponse() {
         personId =
 
                 given().

@@ -1,14 +1,22 @@
 package tests;
 
+import logging.Log4jTestWatcher;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static tests.PersonalDetailsTests.personId;
+import static tests.PersonalDetailsTests.requestSpec;
 
-public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
+public class BankAccountDetailsTests {
+
+    @Rule
+    public TestWatcher testWatcher = new Log4jTestWatcher();
+
     @Test
     public void requestBankAccount_checkResponseCode_expect200() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -20,7 +28,6 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
 
     @Test
     public void requestBankAccount_checkResponseCode_expect404() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -32,7 +39,6 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
 
     @Test
     public void requestBankAccount_checkContentType_expectApplicationJson() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -44,7 +50,6 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
 
     @Test
     public void requestBankAccount_checkAccountNumber_expectAccountNumber() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -56,7 +61,6 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
 
     @Test
     public void requestBankAccount_checkCurrency_expectCurrencySize() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -68,7 +72,6 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
 
     @Test
     public void updateBankAccount_checkAccountNumber_expectAccountNumber() {
-
         given().
                 spec(requestSpec).
                 when().
