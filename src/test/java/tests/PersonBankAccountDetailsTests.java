@@ -15,7 +15,7 @@ public class PersonBankAccountDetailsTests extends PersonPersonalDetailsTests {
                 get("/api/person/bank-account/person-id/" + personId).
                 then().
                 assertThat().
-                statusCode(200);
+                statusCode(202);
     }
 
     @Test

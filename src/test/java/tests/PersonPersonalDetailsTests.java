@@ -1,10 +1,16 @@
 package tests;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.specification.RequestSpecification;
+import logging.Log4jTestWatcher;
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -14,9 +20,13 @@ public class PersonPersonalDetailsTests {
 
     public static String personId;
 
+    private static Logger log = Logger.getLogger(PersonPersonalDetailsTests.class);
+
+    @Rule
+    public TestWatcher watchman = new Log4jTestWatcher();
+
     @BeforeClass
     public static void createRequestSpecification() {
-
         requestSpec = new RequestSpecBuilder().
                 setBaseUri("http://localhost").
                 setPort(8080).
@@ -25,14 +35,14 @@ public class PersonPersonalDetailsTests {
 
     @Test
     public void requestPersonalCode_checkResponseCode_expect200() {
-
         given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/12345678912").
                 then().
                 assertThat().
-                statusCode(200);
+                statusCode(202);
+
     }
 
     @Test
