@@ -12,6 +12,18 @@ import java.time.LocalDateTime;
 
 @Data
 public class PersonalDetails {
+    public PersonalDetails() {
+    }
+
+    public PersonalDetails(String id, String personalCode, String lastName, String firstName, LocalDateTime birthDay, LocalDateTime deathDay, String gender) {
+        this.id = id;
+        this.personalCode = personalCode;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.birthDay = birthDay;
+        this.deathDay = deathDay;
+        this.gender = gender;
+    }
 
     private String id;
 
@@ -21,12 +33,10 @@ public class PersonalDetails {
 
     private String firstName;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime birthDay;
 
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deathDay;

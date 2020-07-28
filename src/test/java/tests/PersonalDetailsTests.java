@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestWatcher;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -89,14 +90,29 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkBirthDay_expectDateTime() {
+    public void requestPersonalDetails_checkBirthDay_expectBirthDay() {
         PersonalDetails personalDetails = given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/12345678912").
                 as(PersonalDetails.class);
 
-        Assert.assertEquals(LocalDateTime.of(2000, Month.MARCH,9,17,55), personalDetails.getBirthDay());
+        Assert.assertEquals(LocalDateTime.of(2000, Month.MARCH, 9, 17, 55), personalDetails.getBirthDay());
+    }
+
+    @Test
+    public void requestPersonalDetails_checkPersonalDetails_expectPersonalDetailsObject() {
+        PersonalDetails personalDetailsExpected = new PersonalDetails("1", "12345678912", "Pro", "John",
+                LocalDateTime.of(2000, Month.MARCH, 9, 17, 55),
+                null, "Man");
+
+        PersonalDetails personalDetails = given().
+                spec(requestSpec).
+                when().
+                get("/api/person/personal-code/12345678912").
+                as(PersonalDetails.class);
+
+        Assert.assertEquals(personalDetailsExpected, personalDetails);
     }
 
     @Test

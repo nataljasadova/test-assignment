@@ -11,8 +11,8 @@
     "jsonBody": {
       "id": "1",
       "personalCode": "12345678912",
-      "lastName": "John",
-      "firstName": "Pro",
+      "lastName": "Pro",
+      "firstName": "John",
       "birthDay": "2000-03-09 17:55:00",
       "deathDay": null,
       "gender": "Man"

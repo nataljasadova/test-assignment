@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/api/person/bank-account/person-id/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.accountNumber",
+        "matchesJsonPath": "$.currency",
+        "matchesJsonPath": "$.bankName"
+      }
+    ]
+  },
+  "response": {
+    "status": 200
+  }
+}
