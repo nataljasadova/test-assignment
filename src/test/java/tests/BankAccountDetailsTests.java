@@ -36,7 +36,7 @@ public class BankAccountDetailsTests {
         given().
                 spec(requestSpec).
                 when().
-                get("/api/person/bank-account/person-id/2").
+                get("/api/person/bank-account/person-id/3").
                 then().
                 assertThat().
                 statusCode(404);
@@ -99,23 +99,51 @@ public class BankAccountDetailsTests {
                 statusCode(200);
     }
 
+
+    @Test
+    public void updateBankAccount_checkBankAccount_expectBankAccount() {
+        given().
+                spec(requestSpec).
+                and().
+                body(bankAccount).
+                when().
+                put("/api/person/bank-account/person-id/" + personId).
+                then().
+                assertThat().
+                body("accountNumber", equalTo("EE12345678912345678914"));
+    }
+
     @Test
     public void updateBankAccountWithoutCurrencyAndBankName_checkAccountNumber_checkResponseCode_expect404() {
-
         given().
                 spec(requestSpec).
                 and().
                 body(bankAccount.getAccountNumber()).
                 when().
-                put("/api/person/bank-account/person-id/" + personId).
+                put("/api/person/bank-account/person-id/3").
                 then().
                 assertThat().
                 statusCode(404);
     }
 
     @Test
-    public void updateBankAccountWrongPerson_checkAccountNumber_checkResponseCode_expect404() {
+    public void updateBankAccountWithoutCurrencyAndBankName_checkAccountNumber_checkResponseCode_expect500() {
+        bankAccount.setCurrency(null);
+        given().
+                spec(requestSpec).
+                and().
+                body(bankAccount).
+                when().
+                put("/api/person/bank-account/person-id/1").
+                then().
+                assertThat().
+                statusCode(500);
+    }
 
+
+
+    /*@Test
+    public void updateBankAccountWrongPerson_checkAccountNumber_checkResponseCode_expect404() {
         given().
                 spec(requestSpec).
                 and().
@@ -125,5 +153,5 @@ public class BankAccountDetailsTests {
                 then().
                 assertThat().
                 statusCode(404);
-    }
+    }*/
 }

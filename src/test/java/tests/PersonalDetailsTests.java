@@ -101,7 +101,18 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkPersonalDetails_expectPersonalDetailsObject() {
+    public void requestPersonalDetails_checkDeathDay_expectDeathDay() {
+        PersonalDetails personalDetails = given().
+                spec(requestSpec).
+                when().
+                get("/api/person/personal-code/15747475486").
+                as(PersonalDetails.class);
+
+        Assert.assertEquals(LocalDateTime.of(2010, Month.JULY, 9, 18, 10, 02), personalDetails.getDeathDay());
+    }
+
+    @Test
+    public void requestPersonalDetails_checkPersonalDetailsObject_expectPersonalDetailsObject() {
         PersonalDetails personalDetailsExpected = new PersonalDetails("1", "12345678912", "Pro", "John",
                 LocalDateTime.of(2000, Month.MARCH, 9, 17, 55),
                 null, "Man");

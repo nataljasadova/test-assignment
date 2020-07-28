@@ -1,15 +1,15 @@
 {
   "request": {
     "method": "GET",
-    "url": "/api/person/personal-code/1.2345678912"
+    "url": "/api/person/personal-code/12345678913"
   },
   "response": {
-    "status": 500,
+    "status": 404,
     "headers": {
       "Content-Type": "application/json"
     },
     "jsonBody": {
-      "error": "Internal Server Error"
+      "error": "Person with personal code 12345678913 does not exist"
     }
   }
 }

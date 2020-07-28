@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "/api/person/bank-account/person-id/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.accountNumber != null)]",
+        "matchesJsonPath": "$[?(@.currency != null)]",
+        "matchesJsonPath": "$[?(@.bankName != null)]"
+      }
+
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "accountNumber": "EE12345678912345678914",
+      "currency": "eur",
+      "bankName": "seb"
+    }
+  }
+}

@@ -1,7 +1,12 @@
 {
   "request": {
-    "method": "GET",
-    "url": "/api/person/personal-code/1.2345678912"
+    "method": "PUT",
+    "url": "/api/person/bank-account/person-id/1",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.currency == null)]"
+      }
+    ]
   },
   "response": {
     "status": 500,
