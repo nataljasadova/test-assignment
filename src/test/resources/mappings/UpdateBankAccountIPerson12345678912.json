@@ -4,11 +4,8 @@
     "url": "/api/person/bank-account/person-id/1",
     "bodyPatterns": [
       {
-        "matchesJsonPath": "$[?(@.accountNumber != null)]",
-        "matchesJsonPath": "$[?(@.currency != null)]",
-        "matchesJsonPath": "$[?(@.bankName != null)]"
+        "matchesJsonPath": "$..[?(@.accountNumber != null && @.currency != null && @.bankName != null)]"
       }
-
     ]
   },
   "response": {
@@ -17,7 +14,7 @@
       "Content-Type": "application/json"
     },
     "jsonBody": {
-      "accountNumber": "EE12345678912345678914",
+      "accountNumber": "EE123456789123456788",
       "currency": "eur",
       "bankName": "seb"
     }

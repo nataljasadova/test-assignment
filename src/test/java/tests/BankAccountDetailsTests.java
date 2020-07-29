@@ -17,8 +17,9 @@ public class BankAccountDetailsTests {
     @Rule
     public TestWatcher testWatcher = new Log4jTestWatcher();
 
-    BankAccount bankAccount = new BankAccount("EE12345678912345678914",
+    BankAccount bankAccount = new BankAccount("EE123456789123456788",
             "eur", "seb");
+
 
     @Test
     public void requestBankAccount_checkResponseCode_expect200() {
@@ -61,7 +62,18 @@ public class BankAccountDetailsTests {
                 get("/api/person/bank-account/person-id/" + personId).
                 then().
                 assertThat().
-                body("accountNumber", equalTo("EE12345678912345678912"));
+                body("accountNumber", equalTo("EE123456789123456789"));
+    }
+
+    @Test
+    public void requestBankAccount_checkAccountNumber_expectCurrencySize() {
+        given().
+                spec(requestSpec).
+                when().
+                get("/api/person/bank-account/person-id/" + personId).
+                then().
+                assertThat().
+                body("accountNumber", hasLength(20));
     }
 
     @Test
@@ -76,7 +88,7 @@ public class BankAccountDetailsTests {
     }
 
     @Test
-    public void requestBankAccountDetails_checkBankName_expectBankName() {
+    public void requestBankAccount_checkBankName_expectBankName() {
         BankAccount bankAccount = given().
                 spec(requestSpec).
                 when().
@@ -85,6 +97,7 @@ public class BankAccountDetailsTests {
 
         Assert.assertEquals("seb", bankAccount.getBankName());
     }
+
 
     @Test
     public void updateBankAccount_checkAccountNumber_checkResponseCode_expect200() {
@@ -99,7 +112,6 @@ public class BankAccountDetailsTests {
                 statusCode(200);
     }
 
-
     @Test
     public void updateBankAccount_checkBankAccount_expectBankAccount() {
         given().
@@ -110,15 +122,20 @@ public class BankAccountDetailsTests {
                 put("/api/person/bank-account/person-id/" + personId).
                 then().
                 assertThat().
-                body("accountNumber", equalTo("EE12345678912345678914"));
+                body("accountNumber", equalTo("EE123456789123456788")).
+                and().
+                body("currency", equalTo("eur")).
+                and().
+                body("bankName", equalTo("seb"));
     }
 
+
     @Test
-    public void updateBankAccountWithoutCurrencyAndBankName_checkAccountNumber_checkResponseCode_expect404() {
+    public void updateBankAccountWithoutPerson_checkResponseCode_expect404() {
         given().
                 spec(requestSpec).
                 and().
-                body(bankAccount.getAccountNumber()).
+                body(bankAccount).
                 when().
                 put("/api/person/bank-account/person-id/3").
                 then().
@@ -127,7 +144,8 @@ public class BankAccountDetailsTests {
     }
 
     @Test
-    public void updateBankAccountWithoutCurrencyAndBankName_checkAccountNumber_checkResponseCode_expect500() {
+    public void updateBankAccountWithoutCurrencyAndBankName_checkResponseCode_expect500() {
+        bankAccount.setBankName(null);
         bankAccount.setCurrency(null);
         given().
                 spec(requestSpec).
@@ -139,19 +157,4 @@ public class BankAccountDetailsTests {
                 assertThat().
                 statusCode(500);
     }
-
-
-
-    /*@Test
-    public void updateBankAccountWrongPerson_checkAccountNumber_checkResponseCode_expect404() {
-        given().
-                spec(requestSpec).
-                and().
-                body(bankAccount).
-                when().
-                put("/api/person/bank-account/person-id/2").
-                then().
-                assertThat().
-                statusCode(404);
-    }*/
 }

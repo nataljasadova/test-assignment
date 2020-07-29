@@ -9,7 +9,7 @@
       "Content-Type": "application/json"
     },
     "jsonBody": {
-      "accountNumber": "EE12345678912345678912",
+      "accountNumber": "EE123456789123456789",
       "currency": "eur",
       "bankName": "seb"
     }

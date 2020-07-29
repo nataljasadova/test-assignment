@@ -1,6 +1,6 @@
 package tests;
 
-import dataentities.PersonalDetails;
+import dataentities.Person;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import logging.Log4jTestWatcher;
@@ -17,6 +17,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 public class PersonalDetailsTests {
+
     public static RequestSpecification requestSpec;
 
     public static String personId;
@@ -91,37 +92,37 @@ public class PersonalDetailsTests {
 
     @Test
     public void requestPersonalDetails_checkBirthDay_expectBirthDay() {
-        PersonalDetails personalDetails = given().
+        Person personalDetails = given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/12345678912").
-                as(PersonalDetails.class);
+                as(Person.class);
 
         Assert.assertEquals(LocalDateTime.of(2000, Month.MARCH, 9, 17, 55), personalDetails.getBirthDay());
     }
 
     @Test
     public void requestPersonalDetails_checkDeathDay_expectDeathDay() {
-        PersonalDetails personalDetails = given().
+        Person personalDetails = given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/15747475486").
-                as(PersonalDetails.class);
+                as(Person.class);
 
         Assert.assertEquals(LocalDateTime.of(2010, Month.JULY, 9, 18, 10, 02), personalDetails.getDeathDay());
     }
 
     @Test
     public void requestPersonalDetails_checkPersonalDetailsObject_expectPersonalDetailsObject() {
-        PersonalDetails personalDetailsExpected = new PersonalDetails("1", "12345678912", "Pro", "John",
+        Person personalDetailsExpected = new Person("1", "12345678912", "Pro", "John",
                 LocalDateTime.of(2000, Month.MARCH, 9, 17, 55),
                 null, "Man");
 
-        PersonalDetails personalDetails = given().
+        Person personalDetails = given().
                 spec(requestSpec).
                 when().
                 get("/api/person/personal-code/12345678912").
-                as(PersonalDetails.class);
+                as(Person.class);
 
         Assert.assertEquals(personalDetailsExpected, personalDetails);
     }
