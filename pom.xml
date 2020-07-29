@@ -18,10 +18,19 @@
         <lombok.version>1.18.12</lombok.version>
         <log4j.version>1.2.17</log4j.version>
         <mvnSite.version>3.7.1</mvnSite.version>
-        <mvnReport.version>3.0.0</mvnReport.version>
+        <mvnReport.version>3.0.0-M5</mvnReport.version>
+        <mvnSurefire.version>2.22.2</mvnSurefire.version>
     </properties>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${mvnSurefire.version}</version>
+                <configuration>
+                    <test>Test*</test>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
@@ -29,7 +38,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>${mvnReport.version}</version>
             </plugin>
         </plugins>
@@ -59,7 +68,6 @@
             <version>${jackson.databind.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -83,26 +91,5 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-   <!--     <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.7.1</version>
-            <type>maven-plugin</type>
-        </dependency>-->
-
-
-        <!--   <dependency>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-install-plugin</artifactId>
-               <version>2.4</version>
-               <type>maven-plugin</type>
-           </dependency>
-
-           <dependency>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-deploy-plugin</artifactId>
-               <version>2.7</version>
-               <type>maven-plugin</type>
-           </dependency>-->
     </dependencies>
 </project>
