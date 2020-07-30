@@ -14,7 +14,7 @@
       "Content-Type": "application/json"
     },
     "jsonBody": {
-      "error": "Bank account for person with personal code 15747475486 does not exist"
+      "error": "Could not update Bank account. Bank account for person with personal code 15747475486 does not exist"
     }
   }
 }

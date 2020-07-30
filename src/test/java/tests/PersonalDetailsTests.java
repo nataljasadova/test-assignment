@@ -3,7 +3,7 @@ package tests;
 import dataentities.Person;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import logging.Log4jTestWatcher;
+import config.Log4jTestWatcher;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Rule;

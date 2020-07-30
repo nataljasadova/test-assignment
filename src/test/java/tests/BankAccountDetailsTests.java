@@ -1,7 +1,7 @@
 package tests;
 
 import dataentities.BankAccount;
-import logging.Log4jTestWatcher;
+import config.Log4jTestWatcher;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -66,7 +66,7 @@ public class BankAccountDetailsTests {
     }
 
     @Test
-    public void requestBankAccount_checkAccountNumber_expectCurrencySize() {
+    public void requestBankAccount_checkAccountNumber_expectAccountNumberSize() {
         given().
                 spec(requestSpec).
                 when().
@@ -131,7 +131,7 @@ public class BankAccountDetailsTests {
 
 
     @Test
-    public void updateBankAccountWithoutPerson_checkResponseCode_expect404() {
+    public void updateNotExistingBankAccount_checkResponseCode_expect404() {
         given().
                 spec(requestSpec).
                 and().
@@ -141,6 +141,20 @@ public class BankAccountDetailsTests {
                 then().
                 assertThat().
                 statusCode(404);
+    }
+
+    @Test
+    public void updateBankAccountWithoutAccountNumber_checkResponseCode_expect500() {
+        bankAccount.setAccountNumber(null);
+        given().
+                spec(requestSpec).
+                and().
+                body(bankAccount).
+                when().
+                put("/api/person/bank-account/person-id/1").
+                then().
+                assertThat().
+                statusCode(500);
     }
 
     @Test

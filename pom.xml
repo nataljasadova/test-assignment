@@ -28,7 +28,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${mvnSurefire.version}</version>
                 <configuration>
-                    <test>Test*</test>
+                    <test>TestSuite</test>
                 </configuration>
             </plugin>
             <plugin>
