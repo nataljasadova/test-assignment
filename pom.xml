@@ -6,7 +6,7 @@
 
     <groupId>org.nortal</groupId>
     <artifactId>test-assignment</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -16,7 +16,7 @@
         <jackson.databind.version>2.10.3</jackson.databind.version>
         <slf4j.version>1.7.30</slf4j.version>
         <lombok.version>1.18.12</lombok.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j.version>1.2.16</log4j.version>
         <mvnSite.version>3.7.1</mvnSite.version>
         <mvnReport.version>3.0.0-M5</mvnReport.version>
         <mvnSurefire.version>2.22.2</mvnSurefire.version>
@@ -73,13 +73,12 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.11.1</version>
         </dependency>
-        <!--    <dependency>
+        <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-nop</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>test</scope>
-            </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+            </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
