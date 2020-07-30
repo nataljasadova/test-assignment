@@ -14,6 +14,7 @@
         <junit.version>4.13</junit.version>
         <junit.dataprovider.version>2.6</junit.dataprovider.version>
         <jackson.databind.version>2.10.3</jackson.databind.version>
+        <jackson.datatype.version>2.11.1</jackson.datatype.version>
         <slf4j.version>1.7.30</slf4j.version>
         <lombok.version>1.18.12</lombok.version>
         <log4j.version>1.2.16</log4j.version>
@@ -71,7 +72,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.11.1</version>
+            <version>${jackson.datatype.version}</version>
         </dependency>
         <dependency>
                 <groupId>org.slf4j</groupId>
