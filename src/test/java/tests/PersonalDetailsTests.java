@@ -4,11 +4,9 @@ import dataentities.Person;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import config.Log4jTestWatcher;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TestWatcher;
+import org.junit.runners.MethodSorters;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -16,6 +14,7 @@ import java.time.Month;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PersonalDetailsTests {
 
     public static RequestSpecification requestSpec;
@@ -34,7 +33,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkResponseCode_expect200() {
+    public void request1PersonalDetails_checkResponseCode_expect200() {
         given().
                 spec(requestSpec).
                 when().
@@ -46,7 +45,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkResponseCode_expect404() {
+    public void request2PersonalDetails_checkResponseCode_expect404() {
         given().
                 spec(requestSpec).
                 when().
@@ -57,7 +56,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkResponseCode_expect500() {
+    public void request3PersonalDetails_checkResponseCode_expect500() {
         given().
                 spec(requestSpec).
                 when().
@@ -69,7 +68,7 @@ public class PersonalDetailsTests {
 
 
     @Test
-    public void requestPersonalDetails_checkContentType_expectApplicationJson() {
+    public void request4PersonalDetails_checkContentType_expectApplicationJson() {
         given().
                 spec(requestSpec).
                 when().
@@ -80,7 +79,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkGender_expectMan() {
+    public void request5PersonalDetails_checkGender_expectMan() {
         given().
                 spec(requestSpec).
                 when().
@@ -91,7 +90,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkBirthDay_expectBirthDay() {
+    public void request6PersonalDetails_checkBirthDay_expectBirthDay() {
         Person personalDetails = given().
                 spec(requestSpec).
                 when().
@@ -102,7 +101,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkDeathDay_expectDeathDay() {
+    public void request7PersonalDetails_checkDeathDay_expectDeathDay() {
         Person personalDetails = given().
                 spec(requestSpec).
                 when().
@@ -113,7 +112,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void requestPersonalDetails_checkPersonalDetailsObject_expectPersonalDetailsObject() {
+    public void request8PersonalDetails_checkPersonalDetailsObject_expectPersonalDetailsObject() {
         Person personalDetailsExpected = new Person("1", "12345678912", "Pro", "John",
                 LocalDateTime.of(2000, Month.MARCH, 9, 17, 55),
                 null, "Man");
@@ -128,7 +127,7 @@ public class PersonalDetailsTests {
     }
 
     @Test
-    public void extractPersonIdFromResponse() {
+    public void requestPersonalDetails_extractPersonIdFromResponse() {
         personId =
 
                 given().
