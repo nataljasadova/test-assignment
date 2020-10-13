@@ -10,7 +10,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <restassured.version>4.3.1</restassured.version>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <junit.dataprovider.version>2.6</junit.dataprovider.version>
         <jackson.databind.version>2.10.3</jackson.databind.version>
         <jackson.datatype.version>2.11.1</jackson.datatype.version>
